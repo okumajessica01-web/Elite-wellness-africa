@@ -164,6 +164,35 @@
             filter: brightness(1.1);
         }
 
+        .colorful-readmore-btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(110deg, #b8942a 0%, #d4af37 25%, #f0d878 50%, #d4af37 75%, #b8942a 100%);
+            background-size: 200% auto;
+            color: #030305;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.35), 0 0 0 3px rgba(212, 175, 55, 0.10);
+            transition: all 0.3s ease;
+            animation: shimmer-gold 3s linear infinite;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .colorful-readmore-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.55), 0 0 0 4px rgba(212, 175, 55, 0.20);
+            filter: brightness(1.1);
+        }
+
         .form-group {
             margin-bottom: 18px;
             position: relative;
@@ -447,7 +476,7 @@
             }
             .image-9-16-container {
                 max-width: 240px;
-            }
+ }
         }
 
         @media (max-width: 400px) {
@@ -558,7 +587,8 @@
         const successMsg = document.getElementById('successMsg');
 
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // prevent page reload so we can show the success message nicely            submitBtn.disabled = true;
+            e.preventDefault(); // prevent page reload so we can show the success message nicely
+            submitBtn.disabled = true;
             submitBtn.innerText = "Processing Order...";
 
             const formData = new FormData(form);
@@ -567,7 +597,7 @@
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+ 'Accept': 'application/json'
                 }
             }).then(function(response) {
                 if (response.ok) {
