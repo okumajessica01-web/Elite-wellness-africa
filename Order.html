@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Order — Elite Wellness Africa</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obsidian-950: #030305;
+            --obsidian-900: #0a0a0f;
+            --obsidian-800: #13131f;
+            --gold-300: #f0d878;
+            --gold-400: #d4af37;
+            --gold-500: #b8942a;
+            --gold-600: #967524;
+            --cream-50: #faf8f3;
+            --cream-200: #e6e1d5;
+            --text-muted: #a1a1aa;
+            --glass-border: rgba(255, 255, 255, 0.06);
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-18px); }
+        }
+
+        @keyframes shimmer-gold {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes badge-pulse {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-6px) rotate(2deg); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--obsidian-950);
+            color: var(--cream-50);
+            font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Gold ambient orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.08), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(180, 130, 30, 0.06), transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(240, 216, 120, 0.04), transparent 45%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .split-container {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(19, 19, 31, 0.65);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            margin: 30px 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(212, 175, 55, 0.08);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(16px);
+        }
+
+        /* Animated gold border glow */
+        .split-container::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #967524, #d4af37, #f0d878, #d4af37, #967524);
+            background-size: 300% 300%;
+            animation: gradient-shift 6s ease infinite;
+            z-index: -1;
+            opacity: 0.45;
+        }
+
+        /* --- FORM SIDE --- */
+        .form-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(160deg, rgba(10,10,15,0.8) 0%, rgba(19,19,31,0.4) 100%);
+        }
+
+        .form-title-gradient {
+            background: linear-gradient(135deg, #faf8f3 0%, #f0d878 40%, #d4af37 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 25px;
+            font-weight: 500;
+ }
+
+        .shimmer-btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(110deg, #b8942a 0%, #d4af37 25%, #f0d878 50%, #d4af37 75%, #b8942a 100%);
+            background-size: 200% auto;
+            color: #030305;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.35), 0 0 0 3px rgba(212, 175, 55, 0.10);
+            transition: all 0.3s ease;
+            animation: shimmer-gold 3s linear infinite;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.55), 0 0 0 4px rgba(212, 175, 55, 0.20);
+            filter: brightness(1.1);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 11px;
+            color: var(--gold-300);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 42px;
+            color: rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 14px 14px 42px;
+            background-color: var(--obsidian-900);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            color: var(--cream-50);
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            appearance: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        select {
+            cursor: pointer;
+            padding-right: 40px;
+        }
+
+        .chevron {
+            position: absolute;
+            right: 14px;
+            top: 42px;
+            color: rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-400);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18), 0 0 18px rgba(212, 175, 55, 0.10);
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.20);
+            font-weight: 400;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-row .input-icon {
+            top: 42px;
+        }
+
+        .form-row .chevron {
+            top: 42px;
+        }
+
+        .notice {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            text-align: center;
+            margin: 20px 0;
+            line-height: 1.6;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(110deg, #b8942a 0%, #d4af37 25%, #f0d878 50%, #d4af37 75%, #b8942a 100%);
+            background-size: 200% auto;
+            color: var(--obsidian-950);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.40);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: shimmer-gold 3s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.60);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            filter: brightness(1);
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 18px;
+            padding: 16px;
+            background: rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: #86efac;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.10);
+            backdrop-filter: blur(10px);
+        }
+
+        /* --- PRODUCT SIDE --- */
+        .product-showcase-side {
+            flex: 1.2;
+            background: rgba(10, 10, 15, 0.6);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .image-9-16-container {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 30px auto;
+            aspect-ratio: 9 / 16;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.20), 0 0 0 2px rgba(212, 175, 55, 0.25);
+            border: 2px solid var(--gold-500);
+            background-color: var(--obsidian-800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            animation: float 3.5s ease-in-out infinite;
+        }
+
+        .image-9-16-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 45px rgba(212, 175, 55, 0.40), 0 0 0 3px rgba(212, 175, 55, 0.4);
+        }
+
+        .image-9-16-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .badge {
+            background: linear-gradient(110deg, #b8942a 0%, #d4af37 25%, #f0d878 50%, #d4af37 75%, #b8942a 100%);
+            background-size: 200% auto;
+            color: var(--obsidian-950);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 900;
+            display: inline-block;
+            width: max-content;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.30);
+            animation: shimmer-gold 3s linear infinite, badge-pulse 2.4s ease-in-out infinite;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0 0 15px 0;
+            background: linear-gradient(90deg, #ffffff, #f0d878);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .powerful-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--cream-200);
+            margin-bottom: 25px;
+        }
+
+        .powerful-description p {
+            margin: 0 0 15px 0;
+        }
+
+        .powerful-description strong {
+            color: var(--gold-300);
+            font-weight: 700;
+        }
+
+        .value-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .value-bullets li {
+            font-size: 14px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .value-bullets li::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 1px;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.4));
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 850px) {
+            .split-container {
+                flex-direction: column;
+                margin: 15px;
+            }
+            .product-showcase-side {
+                border-left: none;
+                border-top: 1px solid var(--glass-border);
+                padding: 35px 20px;
+            }
+            .form-side {
+                padding: 35px 20px;
+            }
+            .product-title {
+                font-size: 26px;
+            }
+            .image-9-16-container {
+                max-width: 240px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="split-container">
+        <!-- LEFT: FORM -->
+        <div class="form-side">
+            <h2 class="form-title-gradient">Elite Wellness Africa</h2>
+            <div class="subtitle">Secure your protocol. Fill in your details below and we will confirm instantly via WhatsApp.</div>
+
+            <a href="index.html" class="shimmer-btn">
+                <i data-lucide="search" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                Explore Our Protocols
+            </a>
+
+            <form id="orderForm" action="https://formspree.io/f/xbdnknyb" method="POST">
+                <input type="hidden" name="_subject" value="New Order from Elite Wellness Africa Website">
+                <input type="hidden" name="product_name" id="hiddenProductName" value="Elite Wellness Protocol">
+                <input type="hidden" name="product_price" id="hiddenProductPrice" value="KSh 5000">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name <span style="color:#ef4444;">*</span></label>
+                    <i data-lucide="user" class="input-icon" style="width:18px;height:18px;"></i>
+                    <input type="text" id="fullName" name="full_name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number <span style="color:#ef4444;">*</span></label>
+                    <i data-lucide="phone" class="input-icon" style="width:18px;height:18px;"></i>
+                    <input type="tel" id="phoneNumber" name="phone_number" required placeholder="e.g. +233...">
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappNumber">WhatsApp Number <span style="color:#ef4444;">*</span></label>
+                    <i data-lucide="message-circle" class="input-icon" style="width:18px;height:18px;"></i>
+                    <input type="tel" id="whatsappNumber" name="whatsapp_number" required placeholder="Enter WhatsApp number">
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress">Delivery Address <span style="color:#ef4444;">*</span></label>
+                    <i data-lucide="map-pin" class="input-icon" style="width:18px;height:18px;"></i>
+                    <input type="text" id="deliveryAddress" name="delivery_address" required placeholder="Apartment / House / Street / Estate">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="province">Province / Region <span style="color:#ef4444;">*</span></label>
+                        <i data-lucide="map" class="input-icon" style="width:18px;height:18px;"></i>
+                        <input type="text" id="province" name="province" required placeholder="e.g. Greater Accra">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City / Town <span style="color:#ef4444;">*</span></label>
+                        <i data-lucide="home" class="input-icon" style="width:18px;height:18px;"></i>
+                        <input type="text" id="city" name="city" required placeholder="e.g. East Legon">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Select Quantity <span style="color:#ef4444;">*</span></label>
+                    <i data-lucide="package" class="input-icon" style="width:18px;height:18px;"></i>
+                    <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;"></i>
+                    <select id="quantity" name="quantity" required>
+                        <option value="">Choose your pack...</option>
+                        <option value="1 Pack: KSh 3500">1 Pack: KSh 3500</option>
+                        <option value="2 Packs (Save 29%): KSh 5000" selected>2 Packs (Save 29%): KSh 5000</option>
+                        <option value="3 Packs (Save 33%): KSh 7000">3 Packs (Save 33%): KSh 7000</option>
+                    </select>
+                </div>
+
+                <div class="notice">
+                    <i data-lucide="shield-check" style="width:16px;height:16px;flex-shrink:0;"></i>
+                    <span>Your details are encrypted and confidential. Our team will reach out exclusively via WhatsApp to verify and dispatch your order.</span>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <i data-lucide="send" style="width:20px;height:20px;"></i>
+                    <span id="btnText">Confirm Order via WhatsApp</span>
+                </button>
+                <div id="successMsg" class="success-message">🎉 Order submitted successfully! Redirecting to WhatsApp...</div>
+            </form>
+        </div>
+
+        <!-- RIGHT: PRODUCT SHOWCASE -->
+        <div class="product-showcase-side">
+            <span class="badge">Best Seller in East Africa</span>
+            <h1 class="product-title">Elite Wellness Vitality Protocol</h1>
+
+            <div class="image-9-16-container">
+                <img src="https://placehold.co/500x900/13131f/d4af37?text=Elite+Wellness+Protocol" alt="Elite Wellness Africa Supplement Pack">
+            </div>
+
+            <div class="powerful-description">
+                <p>
+                    Are you ready to reclaim your peak performance, unbound energy, and absolute confidence? Our premium botanical protocol is engineered for the man who refuses to settle for exhaustion and mediocrity.
+                </p>
+                <p>
+                    Every dose delivers an ultra-potent blend of <strong>100% organic, bio-available botanical extracts</strong> that target circulation, metabolic stamina, and deep recovery at the root. Whether you are commanding the boardroom or maximizing private wellness, this formula ensures you remain strong, sharp, and indefatigable.
+                </p>
+                <p>
+                    Stop letting fatigue dictate your potential. Thousands of distinguished men across Africa have already replaced temporary fixes with this long-lasting, crash-free vitality system. <strong>Your sovereignty deserves elite care.</strong>
+                </p>
+            </div>
+
+            <ul class="value-bullets">
+                <li><strong style="color:var(--cream-50);">Protocol:</strong> Take 2 gummies each morning. No bitterness, no pills — just a refined daily ritual.</li>
+                <li><strong style="color:var(--cream-50);">Premium Botanical Alchemy:</strong> Eight ancestral extracts refined by modern science. Zero synthetic additives.</li>
+                <li><strong style="color:var(--cream-50);">Discrete Delivery:</strong> Plain, secure packaging dropped right to your doorstep.</li>
+                <li><strong style="color:var(--cream-50);">Zero Crash Formula:</strong> Clean, sustained masculine vitality without synthetic fallout.</li>
+                <li><strong style="color:var(--cream-50);">Imperial Guarantee:</strong> 30-day satisfaction commitment — results or reimbursement.</li>
+                <li><strong style="color:var(--cream-50);">Pay on Delivery:</strong> Settle only when the product is physically in your hands.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        const form = document.getElementById('orderForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const successMsg = document.getElementById('successMsg');
+        const quantitySelect = document.getElementById('quantity');
+        const hiddenPrice = document.getElementById('hiddenProductPrice');
+
+        // Update hidden price when quantity changes
+        quantitySelect.addEventListener('change', function() {
+            const val = this.value;
+            if (val.includes('KSh')) {
+                hiddenPrice.value = val.split('KSh ')[1];
+            }
+        });
+        // Trigger once on load
+        if (quantitySelect.value.includes('KSh')) {
+            hiddenPrice.value = quantitySelect.value.split('KSh ')[1];
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phoneNumber').value.trim();
+            const whatsapp = document.getElementById('whatsappNumber').value.trim();
+            const address = document.getElementById('deliveryAddress').value.trim();
+            const province = document.getElementById('province').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const qty = quantitySelect.value;
+
+            if (!fullName || !phone || !whatsapp || !address || !province || !city || !qty) {
+                alert('Please complete all required fields.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            btnText.textContent = 'Processing...';
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                    showSuccess();
+                    // Build WhatsApp message and redirect
+                    const msg = `New Order from Elite Wellness Africa!\nName: ${fullName}\nPhone: ${phone}\nWhatsApp: ${whatsapp}\nAddress: ${address}, ${city}, ${province}\nQuantity: ${qty}`;
+                    setTimeout(() => {
+                        window.location.href = 'https://wa.me/233595285709?text=' + encodeURIComponent(msg);
+                    }, 1200);
+                } else {
+                    throw new Error('Formspree error');
+                }
+            }).catch(function(error) {
+                console.error(error);
+                submitBtn.disabled = false;
+                btnText.textContent = 'Confirm Order via WhatsApp';
+                alert('Something went wrong. Please check your connection and try again.');
+            });
+        });
+
+        function showSuccess() {
+            successMsg.style.display = 'block';
+            setTimeout(() => { successMsg.style.opacity = '1'; }, 50);
+            btnText.textContent = 'ORDER SENT ✓';
+            submitBtn.style.background = 'linear-gradient(90deg, #22c55e, #15803d)';
+            form.reset();
+        }
+    </script>
+
+</body>
+</html>
